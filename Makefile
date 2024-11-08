@@ -56,7 +56,7 @@ migrate: ## Run a one-off command in a new container
 	$(BASE_COMPOSE_CMD) exec limbo python manage.py migrate
 
 tests:
-	$(BASE_COMPOSE_CMD) exec limbo pytest --disable-pytest-warnings
+	$(BASE_COMPOSE_CMD) exec limbo pytest --create-db 
 
 tag:
 	docker tag $(target) $(image)
