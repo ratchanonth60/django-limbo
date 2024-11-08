@@ -1,8 +1,10 @@
 import unittest
+
 from django.core.exceptions import ValidationError
-from marketEdge.apps.users.validators import (
+
+from limbo.apps.users.validators import (
     PasswordStrongValidator,
-)  # Adjust the import path as needed
+)
 
 
 class PasswordStrongValidatorTestCase(unittest.TestCase):

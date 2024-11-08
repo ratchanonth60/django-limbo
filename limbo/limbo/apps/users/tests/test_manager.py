@@ -2,14 +2,14 @@ import unittest
 
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
-from marketEdge.factory import TestsCase
 from django.db.utils import DataError, IntegrityError
+from django.test import TestCase
 
 # Assuming your custom User model is set as the AUTH_USER_MODEL
 User = get_user_model()
 
 
-class UserAdminManagerTestCase(TestsCase):
+class UserAdminManagerTestCase(TestCase):
     def setUp(self):
         self.user_manager = User.objects
 

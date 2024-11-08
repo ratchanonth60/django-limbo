@@ -3,15 +3,15 @@ from unittest.mock import patch
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group, Permission
 from django.core.exceptions import ValidationError
+from django.test import TestCase
 
-from marketEdge.apps.users.manager import UserAdminManager
-from marketEdge.factory import TestsCase
+from limbo.apps.users.manager import UserAdminManager
 
 # Assuming your custom User model is already set as the AUTH_USER_MODEL
 User = get_user_model()
 
 
-class UserModelTestCase(TestsCase):
+class UserModelTestCase(TestCase):
     def setUp(self):
         self.user_data = {
             "username": "testuser",
@@ -119,7 +119,7 @@ class UserModelTestCase(TestsCase):
         user = User.objects.create_user(**self.user_data)
         self.assertEqual(user.get_username(), self.user_data["username"])
 
-    @patch("marketEdge.apps.users.models.send_mail")
+    @patch("limbo.apps.users.models.send_mail")
     def test_email_user(self, mock_send_mail):
         """Test the email_user method."""
         user = User.objects.create_user(**self.user_data)

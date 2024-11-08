@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from django.core.exceptions import ValidationError
 
-from marketEdge.apps.address.validators import validate_postal_code
+from limbo.apps.address.validators import validate_postal_code
 
 
 class TestValidatePostalCode(TestCase):

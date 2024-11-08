@@ -1,7 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 
-from marketEdge.factory.address.models import AddressFactory
+from limbo.factory.address import AddressFactory
 
 
 class TestAddressModels(TestCase):
