@@ -28,6 +28,8 @@ jobs:
         run: |
           touch .env
           echo ${{ secrets.MOCK_DJANGO }} >> .env
-          cat .env
+          touch db.env
+          echo ${{ secrets.MOCK_DB }} >> db.env
+          cat db.env
       - name: Build the Docker image
         run: make build target="limbo db"
