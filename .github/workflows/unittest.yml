@@ -30,7 +30,7 @@ jobs:
           touch docker-compose/limbo-dev/.env docker-compose/limbo-dev/db.env
           echo ${{ secrets.MOCK_DJANGO }} >> docker-compose/limbo-dev/.env
           echo ${{ secrets.MOCK_DB }} >> docker-compose/limbo-dev/db.env
-          cat db.env
+          cat docker-compose/limbo-dev/db.env
       - name: Build the Docker image
         run: make build target="limbo db"
       - name: Unittest
