@@ -1,0 +1,49 @@
+volumes:
+  postgres_data:
+  media:
+  static:
+
+networks:
+  db_net:
+  app-tier:
+
+services:
+  limbo:
+    build:
+      context: ../../
+      dockerfile: docker-compose/limbo-dev/Dockerfile
+    image: limbo:latest
+    # entrypoint: ["entrypoint.sh"]
+    container_name: limbo
+    restart: always
+    platform: linux/amd64
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+    ports:
+      - "8080:8080"
+      - "8000:8000"
+    volumes:
+      - ../../.:/app
+      - media:/mnt/media
+      - static:/mnt/static
+    env_file:
+      - .env
+      - db.env
+    working_dir: /app/limbo
+    depends_on:
+      - db
+    networks:
+      - db_net
+      - app-tier
+  db:
+    image: postgres
+    restart: always
+    env_file:
+      - db.env
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    # extra_hosts:
+    #   - "host.docker.internal:host-gateway"
+    networks:
+      - db_net
