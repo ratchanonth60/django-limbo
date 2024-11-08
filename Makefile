@@ -58,6 +58,9 @@ migrate: ## Run a one-off command in a new container
 tests:
 	$(BASE_COMPOSE_CMD) exec limbo pytest --create-db 
 
+debug:
+	$(BASE_COMPOSE_CMD) exec limbo echo $POSTGRES_HOST 
+
 tag:
 	docker tag $(target) $(image)
 
