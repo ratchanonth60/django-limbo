@@ -53,10 +53,10 @@ list: ## List all targets
 		}' | sort
 
 migrate: ## Run a one-off command in a new container
-	$(BASE_COMPOSE_CMD) exec api python manage.py migrate
+	$(BASE_COMPOSE_CMD) exec limbo python manage.py migrate
 
 tests:
-	$(BASE_COMPOSE_CMD) exec api pytest --disable-pytest-warnings
+	$(BASE_COMPOSE_CMD) exec limbo pytest --disable-pytest-warnings
 
 tag:
 	docker tag $(target) $(image)
