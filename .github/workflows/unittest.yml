@@ -32,3 +32,5 @@ jobs:
           cat db.env
       - name: Build the Docker image
         run: make build target="limbo db"
+      - name: Unittest
+        run: make tests
