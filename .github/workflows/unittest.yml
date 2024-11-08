@@ -24,6 +24,10 @@ jobs:
 
       - name: Verify Docker Compose Installation
         run: docker-compose --version
-
+      - name: Build env
+        run: |
+          touch .env
+          echo {{ secrets.MOCK_DJANGO }} >> .env
+          cat .env
       - name: Build the Docker image
         run: make build target="limbo db"
