@@ -27,8 +27,8 @@ jobs:
       - name: Build env
         run: |
           touch docker-compose/limbo-dev/.env docker-compose/limbo-dev/db.env
-          echo ${{ env.MOCK_DJANGO }} >> docker-compose/limbo-dev/.env
-          echo ${{ env.MOCK_DB }} >> db.env
+          echo ${{ vars.MOCK_DJANGO }} >> docker-compose/limbo-dev/.env
+          echo ${{ vars.MOCK_DB }} >> db.env
           cat db.env
       - name: Build the Docker image
         run: make build target="limbo db"
