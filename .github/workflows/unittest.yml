@@ -33,4 +33,4 @@ jobs:
       - name: Build the Docker image
         run: make build target="limbo db"
       - name: Unittest
-        run: make tests
+        run: make debug
