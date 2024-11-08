@@ -24,11 +24,15 @@ jobs:
 
       - name: Verify Docker Compose Installation
         run: docker-compose --version
+      
       - name: Build env
+        env:
+          MOCK_DB: ${{ secrets.MOCK_DJANGO }}
+          MOCK_DJANGO: ${{ secrets.MOCK_DB }}
         run: |
           touch docker-compose/limbo-dev/.env docker-compose/limbo-dev/db.env
-          echo "${{ secrets.MOCK_DJANGO }}" > docker-compose/limbo-dev/.env
-          echo "${{ secrets.MOCK_DB }}" > db.env
+          echo $MOCK_DB >> docker-compose/limbo-dev/.env
+          echo $MOCK_DJANGO >> db.env
           cat db.env
       - name: Build the Docker image
         run: make build target="limbo db"
