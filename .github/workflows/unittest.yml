@@ -7,12 +7,24 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: make build target="limbo db"
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Compose
+        uses: docker/setup-compose@v2
+        with:
+          version: '2.20.2'  # Specify the desired Docker Compose version
+
+      - name: Verify Docker Installation
+        run: docker --version
+
+      - name: Verify Docker Compose Installation
+        run: docker-compose --version
+
+      - name: Build the Docker image
+        run: make build target="limbo db"
+
